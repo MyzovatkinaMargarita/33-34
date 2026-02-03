@@ -1,0 +1,50 @@
+const [confirmOpen, setConfirmOpen] = useState(false);
+const [confirmText, setConfirmText] = useState("");
+
+function startTest() {
+  setConfirmOpen(false);
+  navigate(`/student/test/${test.id}`, {
+    state: {
+      durationSec: test.durationSec,
+    },
+  });
+}
+const hasTimeLimit = !!test.durationSec && test.durationSec > 0;
+const oneAttemptOnly = test.attemptsAllowed === 1;
+const hasBoth = hasTimeLimit && oneAttemptOnly;
+
+function handleClick() {
+  if (action.kind === "done") return;
+
+  // если ограничений нет — стартуем сразу
+  if (!hasTimeLimit && !oneAttemptOnly) {
+    startTest();
+    return;
+  }
+
+  if (hasBoth) {
+    setConfirmText(
+      "Ограничение по времени и одна попытка. Перейти к решению заданий?"
+    );
+  } else if (hasTimeLimit) {
+    setConfirmText(
+      "Тест с ограничением по времени. Перейти к решению заданий?"
+    );
+  } else if (oneAttemptOnly) {
+    setConfirmText(
+      "Тест возможно пройти только один раз. Перейти к решению заданий?"
+    );
+  }
+
+  setConfirmOpen(true);
+}
+
+
+<ConfirmModal
+  open={confirmOpen}
+  text={confirmText}
+  confirmLabel="Перейти"
+  cancelLabel="Отмена"
+  onConfirm={startTest}
+  onClose={() => setConfirmOpen(false)}
+/>
