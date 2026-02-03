@@ -1,0 +1,36 @@
+const [finishModalOpen, setFinishModalOpen] = useState(false);
+
+<button
+  onClick={() => setFinishModalOpen(true)}
+>
+  Отправить
+</button>
+
+const finishText = allAnswered
+  ? "Хотите закончить тестирование?"
+  : `Не все задания выполнены. Отвечено ${answeredCount} из ${totalCount}. Завершить тестирование?`;
+
+
+function confirmFinish() {
+  setFinishModalOpen(false);
+  handleSubmit();
+}
+
+<ConfirmModal
+  open={finishModalOpen}
+  text={finishText}
+  confirmLabel="Завершить"
+  cancelLabel="Отмена"
+  onConfirm={confirmFinish}
+  onClose={() => setFinishModalOpen(false)}
+/>
+
+
+<>
+  <StudentHeader />
+  <Layout>...</Layout>
+  <ConfirmModal ... />
+</>
+
+
+
