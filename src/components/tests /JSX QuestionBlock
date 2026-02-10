@@ -1,0 +1,28 @@
+<Score>
+  {result ? `${result.earned} / ${question.score}` : question.score} балл
+</Score>
+
+function getOptionState(
+  opt: string
+): "ok" | "wrong" | "miss" | undefined {
+  if (!showResult || !correct) return undefined;
+
+  // SINGLE
+  if (type === "single") {
+    if (value === opt && opt === correct) return "ok";
+    if (value === opt && opt !== correct) return "wrong";
+    if (value !== opt && opt === correct) return "miss";
+  }
+
+  // MULTIPLE
+  if (type === "multiple") {
+    const user = Array.isArray(value) ? value : [];
+    const right = Array.isArray(correct) ? correct : [];
+
+    if (user.includes(opt) && right.includes(opt)) return "ok";
+    if (user.includes(opt) && !right.includes(opt)) return "wrong";
+    if (!user.includes(opt) && right.includes(opt)) return "miss";
+  }
+
+  return undefined;
+}
