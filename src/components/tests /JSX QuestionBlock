@@ -26,3 +26,34 @@ function getOptionState(
 
   return undefined;
 }
+
+
+const OptionLabel = styled.label<{ state?: "ok" | "wrong" | "miss" }>`
+  border: 1px solid #eef1f6;
+
+  ${({ state }) =>
+    state === "ok" &&
+    `
+      border-color: #22c55e;
+      background: #ecfdf5;
+    `}
+
+  ${({ state }) =>
+    state === "wrong" &&
+    `
+      border-color: #ef4444;
+      background: #fef2f2;
+    `}
+
+  ${({ state }) =>
+    state === "miss" &&
+    `
+      border-color: #22c55e;
+      border-style: dashed;
+    `}
+`;
+<input disabled={showResult} />
+<TextAnswer
+  disabled={showResult}
+  placeholder="Ответ"
+/>
