@@ -1,0 +1,21 @@
+[
+  {
+    "type": "single",
+    "text": "Какой CSS-селектор выбирает элемент по идентификатору?",
+    "options": ["class", "id", "tag", "color"],
+    "correct": "id",
+    "score": 1
+  },
+  {
+    "type": "multiple",
+    "text": "Выберите строчные элементы:",
+    "options": ["div", "span", "a", "p"],
+    "correct": ["span", "a"],
+    "score": 2
+  },
+  {
+    "type": "text",
+    "text": "Что такое DOM?",
+    "score": 1
+  }
+]
